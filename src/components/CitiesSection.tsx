@@ -1,66 +1,156 @@
 import { motion } from "framer-motion";
-import { properties } from "@/data/properties";
+import { MapPin, Building2, Home, TreePalm, Map } from "lucide-react";
 import aerialImg from "@/assets/ubatuba-aerial.jpg";
 
-const cityCards = [
-  { city: "Ubatuba", state: "SP", count: 18 },
-  { city: "Florianopolis", state: "SC", count: 32 },
-  { city: "Curitiba", state: "PR", count: 21 },
-  { city: "Praia Grande", state: "SC", count: 14 },
-];
+const GOLD = "#C5A059";
+const GOLD_DARK = "#A68547";
 
-const fallbackImage = properties[0]?.image ?? "";
+const cityCards = [
+  { city: "Florianópolis", state: "SC", count: 32, icon: TreePalm, desc: "Ilhas e beira-mar exclusivos" },
+  { city: "Ubatuba", state: "SP", count: 18, icon: Home, desc: "Litoral norte de São Paulo" },
+  { city: "Curitiba", state: "PR", count: 21, icon: Building2, desc: "Capital & região metropolitana" },
+  { city: "Praia Grande", state: "SC", count: 14, icon: Map, desc: "Costa catarinense premium" },
+];
 
 const CitiesSection = () => (
   <section
-    className="relative py-[80px] md:py-[96px] section-parallax-bg overflow-hidden"
-    style={{ backgroundImage: `url(${aerialImg})`, backgroundColor: '#1B3A52' }}
+    className="relative overflow-hidden"
+    style={{ padding: "110px 0 120px" }}
   >
-    {/* Overlay navy 40% + subtle blur */}
-    <div className="absolute inset-0 bg-[rgba(27,58,82,0.40)] backdrop-blur-[2px] z-[1]" />
+    {/* Full background aerial photo */}
+    <div
+      className="absolute inset-0 bg-cover bg-center"
+      style={{ backgroundImage: `url(${aerialImg})` }}
+    />
 
-    <div className="vb-container relative z-[2]">
+    {/* Refined overlay — dark enough to read, light enough to see the photo */}
+    <div
+      className="absolute inset-0"
+      style={{
+        background:
+          "linear-gradient(to bottom, rgba(10,20,32,0.60) 0%, rgba(10,20,32,0.50) 50%, rgba(10,20,32,0.65) 100%)",
+      }}
+    />
+
+    {/* Content */}
+    <div className="vb-container relative z-10">
+      {/* Header */}
       <motion.div
+        className="text-center mb-14"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.5 }}
-        className="text-center mb-10"
+        viewport={{ once: true }}
+        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
       >
-        <p className="font-sans text-[0.68rem] font-semibold uppercase tracking-[1.5px] text-[#D4A840] mb-3">
-          Mercados e regioes
+        <p
+          className="font-label text-[0.72rem] font-semibold uppercase tracking-[2.5px] mb-3"
+          style={{ color: GOLD_DARK }}
+        >
+          Mercados &amp; Regiões
         </p>
-        <div className="relative inline-block pb-5">
-          <h2 className="font-display font-bold leading-[1.2] tracking-[-0.3px] text-[clamp(32px,3.5vw,48px)] text-white">
-            Regioes atendidas no litoral e capitais
-          </h2>
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-20 h-[3px] bg-gradient-to-r from-[#D4A840] to-[#B8893A] rounded-full" />
-        </div>
-        <p className="font-body text-[17px] leading-[1.8] mt-3 max-w-[600px] mx-auto text-gray-200">
-          Atuacao focada em areas com alta demanda de moradia premium e investimento.
+        <h2
+          className="font-display font-bold"
+          style={{ color: GOLD, fontSize: "clamp(28px, 3.5vw, 46px)" }}
+        >
+          Regiões Atendidas
+        </h2>
+        <p
+          className="font-body font-light mt-3 mx-auto"
+          style={{ color: "rgba(255,255,255,0.65)", fontSize: "1rem", maxWidth: "460px" }}
+        >
+          No litoral e capitais, atuação focada em áreas com alta demanda de moradia premium e investimento.
         </p>
+        {/* Gold divider */}
+        <div
+          className="mx-auto mt-5 rounded-full"
+          style={{
+            width: "52px",
+            height: "2px",
+            background: `linear-gradient(90deg, transparent, ${GOLD}, transparent)`,
+          }}
+        />
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-        {cityCards.map((card, index) => (
-          <motion.article
-            key={`${card.city}-${card.state}`}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.4, delay: index * 0.07 }}
-            className="region-card aspect-[4/3] border border-white/20 group rounded-xl overflow-hidden relative bg-white/95 backdrop-blur-[10px] shadow-[0_4px_24px_rgba(0,0,0,0.1)] hover:bg-white hover:-translate-y-1 hover:shadow-[0_12px_48px_rgba(91,191,212,0.2)] transition-all duration-300"
-          >
-            <img
-              src={fallbackImage}
-              alt={`${card.city} ${card.state}`}
-              loading="lazy"
-              className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
-            />
-            <p className="name">{card.city} - {card.state}</p>
-            <p className="count">{card.count}+ imoveis</p>
-          </motion.article>
-        ))}
+      {/* Region cards — 4 columns */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {cityCards.map((card, i) => {
+          const Icon = card.icon;
+          return (
+            <motion.article
+              key={`${card.city}-${card.state}`}
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.55, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+              className="group flex flex-col items-center text-center px-6 py-8 rounded-[14px] transition-all duration-300 hover:-translate-y-1"
+              style={{
+                background: "rgba(10,20,32,0.42)",
+                backdropFilter: "blur(18px)",
+                WebkitBackdropFilter: "blur(18px)",
+                border: "1px solid rgba(255,255,255,0.18)",
+                boxShadow: "0 4px 24px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.08)",
+              }}
+            >
+              {/* Icon circle */}
+              <div
+                className="w-12 h-12 flex items-center justify-center rounded-full mb-5"
+                style={{
+                  background: "rgba(197,160,89,0.12)",
+                  border: `1px solid rgba(197,160,89,0.35)`,
+                }}
+              >
+                <Icon size={20} style={{ color: GOLD }} />
+              </div>
+
+              {/* City name */}
+              <h3
+                className="font-display font-bold mb-0.5"
+                style={{ color: GOLD, fontSize: "1.1rem" }}
+              >
+                {card.city}
+              </h3>
+
+              {/* State */}
+              <span
+                className="font-label font-semibold uppercase tracking-[1.5px] mb-3"
+                style={{ color: "rgba(255,255,255,0.40)", fontSize: "0.65rem" }}
+              >
+                {card.state}
+              </span>
+
+              {/* Gold divider */}
+              <div
+                className="rounded-full mb-3"
+                style={{
+                  width: "28px",
+                  height: "1px",
+                  background: `linear-gradient(90deg, transparent, ${GOLD}88, transparent)`,
+                }}
+              />
+
+              {/* Description */}
+              <p
+                className="font-body font-light text-center mb-4"
+                style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.8rem", lineHeight: "1.6" }}
+              >
+                {card.desc}
+              </p>
+
+              {/* Count badge */}
+              <span
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-label text-[0.62rem] font-semibold tracking-[0.8px]"
+                style={{
+                  background: "rgba(197,160,89,0.15)",
+                  border: `1px solid rgba(197,160,89,0.35)`,
+                  color: GOLD,
+                }}
+              >
+                <MapPin size={10} />
+                {card.count}+ imóveis
+              </span>
+            </motion.article>
+          );
+        })}
       </div>
     </div>
   </section>

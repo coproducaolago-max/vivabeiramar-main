@@ -1,5 +1,9 @@
 import { FormEvent, useState } from "react";
-import sunsetImg from "@/assets/ubatuba-sunset.jpg";
+import { motion } from "framer-motion";
+import { Send } from "lucide-react";
+
+const GOLD = "#C5A059";
+const GOLD_DARK = "#A68547";
 
 const NewsletterSection = () => {
   const [email, setEmail] = useState("");
@@ -7,51 +11,114 @@ const NewsletterSection = () => {
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!email.trim()) return;
-    window.alert("Cadastro recebido. Em breve voce recebera oportunidades exclusivas.");
+    window.alert("Cadastro recebido. Em breve você receberá oportunidades exclusivas.");
     setEmail("");
   };
 
   return (
     <section
-      className="relative py-[100px] md:py-[120px] section-parallax-bg overflow-hidden text-center"
-      style={{ backgroundImage: `url(${sunsetImg})`, backgroundColor: '#0D2233' }}
+      style={{
+        padding: "100px 0 110px",
+        background: "linear-gradient(160deg, #F5EDD8 0%, #EDE0C4 50%, #E5D5B0 100%)",
+      }}
     >
-      {/* Navy gradient overlay 70-75% */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[rgba(13,34,51,0.78)] to-[rgba(27,58,82,0.65)] z-[1]" />
-
-      <div className="vb-container relative z-[2] max-w-[760px] mx-auto">
-        <p className="font-sans text-[0.68rem] font-semibold uppercase tracking-[1.5px] text-[#D4A840] mb-3">
-          Newsletter privada
-        </p>
-        <h2
-          className="font-display font-bold leading-[1.2] tracking-[-0.3px] text-white mb-4"
-          style={{ fontSize: 'clamp(32px, 4vw, 52px)', textShadow: '0 2px 16px rgba(0,0,0,0.3)' }}
+      <div className="vb-container max-w-[760px] mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
         >
-          Receba oportunidades exclusivas
-        </h2>
-        <p className="font-body text-[17px] leading-[1.8] text-gray-200 max-w-[560px] mx-auto mb-10">
-          Selecao de imoveis premium enviada para clientes cadastrados antes da divulgacao ampla.
-        </p>
+          {/* Section header */}
+          <div className="text-center mb-10">
+            <p
+              className="font-label text-[0.72rem] font-semibold uppercase tracking-[2.5px] mb-3"
+              style={{ color: GOLD }}
+            >
+              Newsletter Privada
+            </p>
+            <h2
+              className="font-display font-bold mb-4"
+              style={{ color: "#3D2B00", fontSize: "clamp(28px, 3.5vw, 44px)" }}
+            >
+              Receba Oportunidades Exclusivas
+            </h2>
+            <p
+              className="font-body font-light mx-auto"
+              style={{ color: "#7A5C2E", fontSize: "1rem", maxWidth: "480px", lineHeight: "1.75" }}
+            >
+              Seleção de imóveis premium enviada para clientes cadastrados antes da divulgação ampla.
+            </p>
+            <div
+              className="mx-auto mt-5 rounded-full"
+              style={{
+                width: "52px",
+                height: "2px",
+                background: `linear-gradient(90deg, transparent, ${GOLD}, transparent)`,
+              }}
+            />
+          </div>
 
-        <form
-          onSubmit={onSubmit}
-          className="newsletter-form max-w-[500px] mx-auto flex flex-col sm:flex-row gap-3"
-        >
-          <input
-            type="email"
-            required
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            placeholder="Seu melhor e-mail"
-            className="flex-1 h-14 px-6 rounded-lg border-2 border-white/25 bg-white/12 backdrop-blur-[10px] text-white placeholder:text-white/60 focus:outline-none focus:border-[#5BBFD4] font-body text-[16px] transition-colors"
-          />
-          <button
-            type="submit"
-            className="h-14 px-10 rounded-lg bg-[#5BBFD4] text-white font-sans font-semibold text-[0.85rem] tracking-[0.3px] hover:bg-[#4AACBE] hover:-translate-y-[2px] hover:shadow-[0_8px_24px_rgba(91,191,212,0.4)] transition-all duration-300"
+          {/* Glassmorphism form panel */}
+          <div
+            className="rounded-[16px] p-8 md:p-10"
+            style={{
+              background: "rgba(255,252,245,0.55)",
+              backdropFilter: "blur(20px)",
+              WebkitBackdropFilter: "blur(20px)",
+              border: "1px solid rgba(255,255,255,0.72)",
+              boxShadow: "0 8px 36px rgba(160,120,60,0.12), 0 1px 4px rgba(0,0,0,0.05)",
+            }}
           >
-            Receber
-          </button>
-        </form>
+            <form
+              onSubmit={onSubmit}
+              className="flex flex-col sm:flex-row gap-3"
+            >
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Seu melhor e-mail"
+                className="flex-1 h-13 px-5 rounded-[10px] font-body text-[0.95rem] focus:outline-none transition-all duration-200"
+                style={{
+                  height: "52px",
+                  background: "rgba(255,248,236,0.80)",
+                  border: `1px solid rgba(197,160,89,0.35)`,
+                  color: "#3D2B00",
+                  caretColor: GOLD,
+                }}
+                onFocus={(e) => {
+                  e.currentTarget.style.borderColor = GOLD;
+                  e.currentTarget.style.boxShadow = `0 0 0 3px rgba(197,160,89,0.12)`;
+                }}
+                onBlur={(e) => {
+                  e.currentTarget.style.borderColor = "rgba(197,160,89,0.35)";
+                  e.currentTarget.style.boxShadow = "none";
+                }}
+              />
+              <button
+                type="submit"
+                className="inline-flex items-center justify-center gap-2 px-8 h-13 rounded-[10px] font-label font-semibold text-[0.78rem] tracking-[0.8px] text-white transition-all duration-300 hover:scale-105 flex-shrink-0"
+                style={{
+                  height: "52px",
+                  background: `linear-gradient(135deg, ${GOLD} 0%, ${GOLD_DARK} 100%)`,
+                  boxShadow: `0 4px 18px rgba(197,160,89,0.35)`,
+                }}
+              >
+                <Send size={14} />
+                Receber
+              </button>
+            </form>
+
+            <p
+              className="text-center font-body font-light mt-5 text-[0.78rem]"
+              style={{ color: "#9C854A" }}
+            >
+              Sem spam. Apenas oportunidades reais. Cancele quando quiser.
+            </p>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

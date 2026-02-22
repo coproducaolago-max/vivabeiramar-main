@@ -54,8 +54,8 @@ const PropertyCard = ({
   const cardBg = lightSection
     ? "bg-white shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-[#E5E7EB]"
     : variant === "glass"
-      ? "bg-[rgba(27,58,82,0.65)] backdrop-blur-sm"
-      : "bg-[var(--bg-card)]";
+      ? "bg-[rgba(11,30,45,0.72)] backdrop-blur-sm"
+      : "bg-[#0D2035] border border-[rgba(201,168,76,0.08)]";
 
   const textColor = lightSection ? "text-[#1B3A52]" : "text-[var(--text-primary)]";
   const mutedColor = lightSection ? "text-[#6B7280]" : "text-[var(--text-muted)]";
@@ -98,7 +98,7 @@ const PropertyCard = ({
           <span className={`block font-sans text-[0.75rem] font-medium uppercase tracking-[1.5px] ${mutedColor} mb-1.5`}>
             {tipo}
           </span>
-          <h3 className={`font-sans text-[1.18rem] font-semibold leading-snug ${textColor}`}>
+          <h3 className={`font-display text-[1.1rem] font-semibold leading-snug ${textColor}`}>
             {titulo}
           </h3>
           {condo && (
@@ -133,7 +133,7 @@ const PropertyCard = ({
             <span className={`block font-sans text-[0.75rem] font-medium uppercase tracking-[1.5px] ${mutedColor}`}>
               {precoLabel}
             </span>
-            <span className="property-price">
+            <span className="font-display text-[1.25rem] font-semibold text-[var(--accent-gold)]">
               {preco}
             </span>
           </div>

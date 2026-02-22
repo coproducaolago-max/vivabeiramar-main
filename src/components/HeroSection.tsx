@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
-import heroBg from "@/assets/hero-bg.jpg";
+import heroBg from "@/assets/hero-luxury.png";
 
 const HeroSection = () => {
   const { scrollY } = useScroll();
@@ -22,41 +22,59 @@ const HeroSection = () => {
   };
 
   const inputClass =
-    "w-full h-11 px-3 bg-[rgba(27,58,82,0.75)] border border-[var(--border-subtle)] rounded-md text-[0.86rem] text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-gold)]/35 focus:border-[var(--accent-gold)] transition-all duration-300 appearance-none";
+    "search-input w-full h-11 px-0 bg-transparent border-0 border-b border-white/30 rounded-none text-[0.86rem] font-light text-white placeholder:text-white/40 focus:outline-none focus:border-[var(--accent-gold)] transition-all duration-300 appearance-none";
 
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-      <motion.div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${heroBg})`, y: parallaxY }}
+    <section className="relative min-h-[90vh] flex items-start overflow-hidden">
+      {/* Hero background — sharp, crisp, no parallax */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url(${heroBg})`,
+          imageRendering: "crisp-edges",
+        }}
       />
-      <div className="absolute inset-0 gradient-hero-overlay" />
+      {/* Overlay: dark on top → clear on bottom, 30% */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: "linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.18) 50%, rgba(0,0,0,0.05) 100%)"
+        }}
+      />
 
-      <div className="relative z-10 w-full vb-container pt-28 pb-16">
+      <div className="relative z-10 w-full vb-container pt-[100px] md:pt-[110px] lg:pt-[120px] pb-20">
         <motion.div
           initial={{ opacity: 0, y: 26 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-[880px] mb-10"
         >
-          <p className="font-sans text-[0.7rem] font-semibold uppercase tracking-[1.5px] text-[var(--accent-gold)] mb-4">
-            VIVA BEIRAMAR | CURADORIA IMOBILIARIA
-          </p>
+
           <h1
-            className="font-display font-bold text-white leading-[1.15] tracking-[-0.5px] mb-5"
-            style={{ fontSize: "clamp(42px, 5vw, 64px)" }}
+            className="font-display font-bold text-[var(--text-primary)] leading-[1.1] tracking-[-0.5px] mb-5"
+            style={{
+              fontSize: "clamp(44px, 5.5vw, 68px)",
+              textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
+            }}
           >
-            Seu Refugio Exclusivo a Beira-Mar
+            Seu Refúgio Exclusivo<br />
+            <span className="text-[var(--accent-gold)]">a Beira-Mar</span>
           </h1>
-          <p className="font-body max-w-[680px] text-[17px] leading-[1.8] text-gray-300">
-            Curadoria de imoveis singulares no litoral, com consultoria
-            personalizada para quem busca patrimonio, estilo de vida e
-            seguranca na decisao.
+          <p
+            className="font-body font-light max-w-[640px] text-[17px] leading-[1.9]"
+            style={{
+              color: "rgba(255,255,255,0.90)",
+              textShadow: "1px 1px 6px rgba(0,0,0,0.55)",
+            }}
+          >
+            Curadoria de imóveis singulares no litoral, com consultoria
+            personalizada para quem busca patrimônio, estilo de vida e
+            segurança na decisão.
           </p>
-          <div className="mt-7">
+          <div className="mt-8">
             <a
               href="#interest-form"
-              className="inline-flex items-center gap-2 px-7 h-12 rounded-md bg-[var(--accent-gold)] text-[var(--bg-primary)] font-sans font-semibold text-[0.8rem] tracking-[0.3px] hover:bg-[var(--accent-gold-hover)] transition-colors duration-300"
+              className="btn-gold inline-flex items-center gap-2 px-8 h-12 rounded-md font-label text-[0.78rem] tracking-[0.8px]"
             >
               Agendar Visita Personalizada
               <ArrowRight className="w-4 h-4" />
@@ -68,7 +86,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="glass p-5 md:p-6 shadow-card-hover rounded-xl"
+          className="search-container"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 mb-4">
             {[
@@ -116,7 +134,10 @@ const HeroSection = () => {
               },
             ].map((field) => (
               <div key={field.id} className="flex flex-col gap-1.5">
-                <label className="font-label text-[0.62rem] text-[var(--text-secondary)]">
+                <label
+                  className="font-label text-[0.68rem] uppercase tracking-[1px]"
+                  style={{ color: "rgba(255,255,255,0.85)", textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}
+                >
                   {field.label}
                 </label>
                 <select
@@ -138,8 +159,11 @@ const HeroSection = () => {
               </div>
             ))}
             <div className="flex flex-col gap-1.5">
-              <label className="font-label text-[0.62rem] text-[var(--text-secondary)]">
-                Faixa de Preco
+              <label
+                className="font-label text-[0.68rem] uppercase tracking-[1px]"
+                style={{ color: "rgba(255,255,255,0.85)", textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}
+              >
+                Faixa de Preço
               </label>
               <input
                 type="number"
@@ -159,7 +183,7 @@ const HeroSection = () => {
           </div>
           <button
             onClick={handleSearch}
-            className="w-full h-12 rounded-md bg-[var(--accent-gold)] text-[var(--bg-primary)] font-btn text-[0.75rem] hover:bg-[var(--accent-gold-hover)] transition-colors duration-300"
+            className="w-full h-12 rounded-md btn-gold font-btn text-[0.75rem]"
           >
             Explorar Imoveis Exclusivos
           </button>
