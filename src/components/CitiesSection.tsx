@@ -6,10 +6,10 @@ const GOLD = "#C5A059";
 const GOLD_DARK = "#A68547";
 
 const cityCards = [
-  { city: "Florianópolis", state: "SC", count: 32, icon: TreePalm, desc: "Ilhas e beira-mar exclusivos" },
-  { city: "Ubatuba", state: "SP", count: 18, icon: Home, desc: "Litoral norte de São Paulo" },
-  { city: "Curitiba", state: "PR", count: 21, icon: Building2, desc: "Capital & região metropolitana" },
-  { city: "Praia Grande", state: "SC", count: 14, icon: Map, desc: "Costa catarinense premium" },
+  { city: "Lázaro", state: "Ubatuba - SP", count: 8, icon: TreePalm, desc: "Praia paradisíaca com águas cristalinas" },
+  { city: "Praia Grande", state: "Ubatuba - SP", count: 12, icon: Home, desc: "A maior e mais valorizada praia de Ubatuba" },
+  { city: "Itamambuca", state: "Ubatuba - SP", count: 6, icon: Map, desc: "Refúgio de surf e natureza preservada" },
+  { city: "Saco da Ribeira", state: "Ubatuba - SP", count: 5, icon: Building2, desc: "Marina e alto padrão à beira-mar" },
 ];
 
 const CitiesSection = () => (
@@ -46,19 +46,19 @@ const CitiesSection = () => (
           className="font-label text-[0.72rem] font-semibold uppercase tracking-[2.5px] mb-3"
           style={{ color: GOLD_DARK }}
         >
-          Mercados &amp; Regiões
+          Bairros &amp; Praias
         </p>
         <h2
           className="font-display font-bold"
           style={{ color: GOLD, fontSize: "clamp(28px, 3.5vw, 46px)" }}
         >
-          Regiões Atendidas
+          Ubatuba — Litoral Norte de SP
         </h2>
         <p
           className="font-body font-light mt-3 mx-auto"
           style={{ color: "rgba(255,255,255,0.65)", fontSize: "1rem", maxWidth: "460px" }}
         >
-          No litoral e capitais, atuação focada em áreas com alta demanda de moradia premium e investimento.
+          Atuação exclusiva nos bairros e praias mais valorizados de Ubatuba, com imóveis de alto padrão frente ao mar.
         </p>
         {/* Gold divider */}
         <div
@@ -153,7 +153,7 @@ const CitiesSection = () => (
         })}
       </div>
     </div>
-  </section>
+  </section >
 );
 
 export default CitiesSection;
