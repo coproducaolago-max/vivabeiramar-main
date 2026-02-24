@@ -117,9 +117,6 @@ const HeroSection = () => {
                 options: [
                   ["", "Selecione"],
                   ["ubatuba", "Ubatuba"],
-                  ["florianopolis", "Florianopolis"],
-                  ["curitiba", "Curitiba"],
-                  ["praia-grande", "Praia Grande"],
                 ],
               },
               {
@@ -127,9 +124,18 @@ const HeroSection = () => {
                 label: "Bairro",
                 options: [
                   ["", "Selecione"],
-                  ["centro", "Centro"],
-                  ["itacorubi", "Itacorubi"],
+                  ["lazaro", "Lázaro"],
+                  ["itamambuca", "Itamambuca"],
                   ["praia-grande", "Praia Grande"],
+                  ["enseada", "Enseada"],
+                  ["maranduba", "Maranduba"],
+                  ["toninhas", "Toninhas"],
+                  ["saco-da-ribeira", "Saco da Ribeira"],
+                  ["centro", "Centro"],
+                  ["lagoinha", "Lagoinha"],
+                  ["fortaleza", "Fortaleza"],
+                  ["tenorio", "Tenório"],
+                  ["perequê-açu", "Perequê-Açu"],
                 ],
               },
             ].map((field) => (

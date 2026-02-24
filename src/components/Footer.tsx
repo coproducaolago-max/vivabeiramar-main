@@ -13,7 +13,7 @@ const navLinks = [
   { label: "Contato", href: "#" },
 ];
 
-const regions = ["Guarujá — SP", "Ilhabela — SP", "Riviera — SP", "Florianópolis — SC"];
+const regions = ["Lázaro — Ubatuba", "Praia Grande — Ubatuba", "Itamambuca — Ubatuba", "Saco da Ribeira — Ubatuba"];
 
 const socials = [
   { icon: Instagram, href: "https://instagram.com/vivabeiramar", label: "Instagram" },

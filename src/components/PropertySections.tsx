@@ -141,7 +141,7 @@ export const ProcuradosSection = () => {
             className="font-body font-light mt-3 mx-auto"
             style={{ color: "#7A5C2E", fontSize: "1rem", maxWidth: "440px" }}
           >
-            Os imóveis mais desejados do litoral catarinense
+            Os imóveis mais desejados do litoral de Ubatuba
           </p>
           <div
             className="mx-auto mt-5 rounded-full"
@@ -218,12 +218,12 @@ import lancResidencial from "@/assets/lanc-residencial-praia.png";
 
 const lancamentos = [
   {
-    id: "residencial-aurora-beira-mar",
+    id: "residencial-lazaro-premium",
     image: lancEdificio,
     badge: "Lançamento",
     tipo: "Torre Residencial",
-    titulo: "Residencial Aurora Beira-Mar",
-    localizacao: "Beira-Mar Norte, Florianópolis",
+    titulo: "Residencial Lázaro Premium",
+    localizacao: "Lázaro, Ubatuba",
     area: "180 m²",
     quartos: "3 suítes",
     vagas: "2 vagas",
@@ -231,12 +231,12 @@ const lancamentos = [
     precoLabel: "A partir de",
   },
   {
-    id: "torre-horizonte-azul",
+    id: "torre-camburi-azul",
     image: lancTorre,
     badge: "Lançamento",
     tipo: "Cobertura Exclusiva",
-    titulo: "Torre Horizonte Azul",
-    localizacao: "Jurerê Internacional, Florianópolis",
+    titulo: "Torre Camburi Azul",
+    localizacao: "Camburi, Ubatuba",
     area: "240 m²",
     quartos: "4 suítes",
     vagas: "3 vagas",
@@ -244,12 +244,12 @@ const lancamentos = [
     precoLabel: "A partir de",
   },
   {
-    id: "eden-residencial-praia",
+    id: "eden-toninhas-praia",
     image: lancResidencial,
     badge: "Pré-Lançamento",
     tipo: "Apartamento Premium",
-    titulo: "Éden Residencial Praia",
-    localizacao: "Lagoa da Conceição, Florianópolis",
+    titulo: "Éden Toninhas Praia",
+    localizacao: "Toninhas, Ubatuba",
     area: "150 m²",
     quartos: "3 suítes",
     vagas: "2 vagas",

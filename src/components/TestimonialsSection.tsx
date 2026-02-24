@@ -21,7 +21,7 @@ const testimonials = [
     quote:
       "A curadoria foi decisiva para filtrar opções realmente aderentes ao nosso perfil. Processo fluido, transparente e muito profissional.",
     author: "Mariana A.",
-    role: "Investidora · Florianópolis",
+    role: "Investidora · Ubatuba",
     photo: clientMariana,
     stars: 5,
     rotate: "0.8deg",
@@ -31,7 +31,7 @@ const testimonials = [
     quote:
       "Excelente negociação e acompanhamento de ponta a ponta. A experiência entrega o nível de confiança esperado em ativos premium.",
     author: "Fernanda C.",
-    role: "Executiva · Curitiba",
+    role: "Executiva · Ubatuba",
     photo: clientFernanda,
     stars: 5,
     rotate: "-0.5deg",
